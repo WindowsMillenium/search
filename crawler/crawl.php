@@ -1,7 +1,7 @@
 <?
 ini_set("display_errors", "on");
 include("PHPCrawl/libs/PHPCrawler.class.php");
-$GLOBALS['maxtime']=strtotime("+10 seconds");
+$GLOBALS['maxtime']=strtotime("+2 seconds");
 $GLOBALS['crawled']=array();
 class WSCrawler extends PHPCrawler { 
  function handleDocumentInfo(PHPCrawlerDocumentInfo $p) { 
@@ -22,8 +22,7 @@ function crawlAdd($u){
   $C->setURL($u);
   $C->addContentTypeReceiveRule("#text/html#");
   $C->addURLFilterRule("#\.(jpg|jpeg|gif|png|svg|css|js)$# i");
-  $C->setTrafficLimit(1000 * 1024);
-  $C->setPageLimit(1000, true);
+  $C->setPageLimit(100, true);
   $C->obeyRobotsTxt(true);
   $C->setUserAgentString("Dingo Bot (http://search.subinsb.com/about/bot.php)");
   $C->setFollowMode(0);
