@@ -1,0 +1,27 @@
+.header .searchForm #query{
+ width:400px !important;
+}
+.header{
+ text-align:center;
+}
+.container .info{
+ color: gray;
+}
+.results{
+ width:500px;
+ margin-top:25px;
+}
+.result{
+ margin:20px 0px;
+}
+.result .title{
+ margin-bottom: 0px;
+ font-size: 17px;
+}
+.result .url{
+ font-size: 13px;
+ color: #006621;
+ overflow:hidden;
+ height:16px;
+ margin-bottom:5px;
+}
