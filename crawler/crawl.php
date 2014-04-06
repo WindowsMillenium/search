@@ -9,7 +9,6 @@ class WSCrawler extends PHPCrawler {
   if($GLOBALS['maxtime'] > time()){
    crawlAdd($u);
   }
-  flush();
  }
 }
 
@@ -20,7 +19,6 @@ function crawlAdd($u){
   echo $u."<br/>";
   $C = new WSCrawler();
   $C->setURL($u);
-  $C->addContentTypeReceiveRule("#text/html#");
   $C->addURLFilterRule("#\.(jpg|jpeg|gif|png|svg|css|js)$# i");
   $C->setPageLimit(100, true);
   $C->obeyRobotsTxt(true);
