@@ -29,5 +29,5 @@ function crawlAdd($u){
   $C->go();
  }
 }
-crawlAdd("http://localhost/phpmyadmin/");
+crawlAdd("http://google.com");
 ?>
