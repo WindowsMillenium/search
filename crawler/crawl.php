@@ -1,7 +1,7 @@
 <?
 ini_set("display_errors", "on");
 include("PHPCrawl/libs/PHPCrawler.class.php");
-$GLOBALS['maxtime']=strtotime("+1 second");
+$GLOBALS['maxtime']=strtotime("+10 seconds");
 $GLOBALS['crawled']=array();
 class WSCrawler extends PHPCrawler { 
  function handleDocumentInfo(PHPCrawlerDocumentInfo $p) { 
@@ -9,6 +9,7 @@ class WSCrawler extends PHPCrawler {
   if($GLOBALS['maxtime'] > time()){
    crawlAdd($u);
   }
+  flush();
  }
 }
 
