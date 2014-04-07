@@ -1,21 +1,29 @@
 <?
 ini_set("display_errors", "on");
-ob_implicit_flush(1);
 include("PHPCrawl/libs/PHPCrawler.class.php");
+include("simple_html_dom.php");
+
 $GLOBALS['maxtime']=strtotime("+1 second");
 $GLOBALS['crawled']=array();
 class WSCrawler extends PHPCrawler { 
  function handleDocumentInfo(PHPCrawlerDocumentInfo $p) { 
   $u=$p->url;
-  crawlInit($u);
+  $s=$p->http_status_code;
+  if($s==200){
+   $html = str_get_html($p->source);
+   $t=$html->find("title", 0) ? $html->find("title", 0)->innertext:"";
+   foreach($p->links_found as $v){
+    crawlInit($v['link_raw']);
+   }
+  }
  }
 }
 function crawlInit($u){
+ $u=preg_replace("(https?://)", "//", $u);
  $uen=urlencode($u);
  if(array_search($uen, $GLOBALS['crawled'])===false && $GLOBALS['maxtime'] > time()){
   $GLOBALS['crawled'][]=$uen;
   echo $u."<br/>\n";
-  flush();
   crawlNow($u);
  }
 }
