@@ -63,13 +63,13 @@ h1,h2,h3,h4{
 input[type="text"]{
  padding:3px 5px;
  outline: none;
- border: 1px solid #DDD;
+ border: 1px solid #EEE;
  border-radius: 2px;
  display: inline-block;
  vertical-align:middle;
 }
 input[type="text"]:hover{
- border: 1px solid #EEE;
+ border: 1px solid #DDD;
 }
 input[type="text"]:active, input[type="text"]:focus{
  border: 1px solid #4585F1;

@@ -1,14 +1,5 @@
 <?
-/* Configuration */
-ini_set("display_errors", "on"); // Do you want to see the errors ?
-define("HOST", "http://search.subinsb.com"); // No '/' at the end
-$host = "localhost"; // Hostname
-$port = "3306"; // MySQL Port; Default : 3306
-$user = "root"; // Username Here
-$pass = "backstreetboys"; // Password Here
-$db   = "search"; // Database Name
-$dbh  = new PDO('mysql:dbname='.$db.';host='.$host.';port='.$port, $user, $pass);
-/* End Configuration */
+include("config.php");
 
 session_start();
 $GLOBALS['q']=isset($_GET['q']) ? htmlspecialchars(urldecode($_GET['q'])):"";
@@ -19,7 +10,10 @@ $GLOBALS['dbh']=$dbh;
 function head($title="", $IncOtherCss=array()){
  $title=$title=="" ? "Web Search" : $title." - Web Search";
  /* Display The <title> tag */
- echo "<title>$title</title>";
+ echo "<title>
+   $title
+  </title>
+ ";
  /* The Stylesheets */
  $cssFiles = array_merge(
   array(
@@ -32,6 +26,7 @@ function head($title="", $IncOtherCss=array()){
   $url=preg_match("/http/", $css) ? $css : HOST."/cdn/css/$css.css";
   echo "<link href='".$url."' async='async' rel='stylesheet' />";
  }
+ echo "<meta name='description' content=\"Search the world's information, webpages, problems and more. Find exactly what you're looking for easily without any ads and other distractions\"/>";
 }
 function headerElem(){ // header() is already a function in PHP
  $header = "<div class='header'><a class='logo' href='".HOST."'><strong>Web Search</strong></a><form method='GET' action='".HOST."/search.php' class='searchForm'><input id='query' type='text' placeholder='Your Query' autocomplete='off' name='q' value=\"".$GLOBALS['displayQ']."\"/><button><svg viewBox='0 0 100 100' class='shape-search'><use xlink:href='#shape-search'></use></svg></button></form></div>";

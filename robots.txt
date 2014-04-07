@@ -2,4 +2,5 @@ User-agent: *
 Disallow: /inc/
 Disallow: /url.php
 Disallow: /settings.php
+Disallow: /search.php
 Allow: /

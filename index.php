@@ -12,10 +12,10 @@
      <input type="text" autocomplete="off" name="q" id="query"/>
      <div>
       <button>
-       <svg class='shape-search' viewBox='0 0 100 100' class='shape-search'><use xlink:href='#shape-search'></use></svg>
+       <svg class='shape-search' viewBox="0 0 100 100" class='shape-search'><use xlink:href='#shape-search'></use></svg>
       </button>
      </div>
-      <p>Free, Open Source<br/>&<br/>Anonymous</p>
+      <p>Free, Open Source & Anonymous</p>
     </form>
    </center>
   </div>

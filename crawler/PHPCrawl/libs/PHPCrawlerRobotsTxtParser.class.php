@@ -150,14 +150,16 @@ class PHPCrawlerRobotsTxtParser
    */
   protected function buildRegExpressions(&$applying_lines, $base_url)
   { 
-    // First, get all "Disallow:"-pathes
+    // First, get all "Disallow:"-paths
     $disallow_pathes = array();
     for ($x=0; $x<count($applying_lines); $x++)
     {
       if (preg_match("#^Disallow:# i", $applying_lines[$x]))
       {
         preg_match("#^Disallow:[ ]*(.*)#", $applying_lines[$x], $match);
-        $disallow_pathes[] = trim($match[1]);
+        if(isset($match[1])){
+         $disallow_pathes[] = trim($match[1]);
+        }
       }
     }
     
@@ -175,10 +177,10 @@ class PHPCrawlerRobotsTxtParser
       // If the disallow-path is empty -> simply ignore it
       if ($disallow_pathes[$x] == "") continue;
       
-      $non_follow_path_complpete = $normalized_base_url.substr($disallow_pathes[$x], 1); // "http://www.foo.com/bla/"
+      $non_follow_path_complpete = $normalized_base_url."/".substr($disallow_pathes[$x], 1); // "http://www.foo.com/bla/"
       $non_follow_exp = preg_quote($non_follow_path_complpete, "#"); // "http://www\.foo\.com/bla/"
       $non_follow_exp = "#^".$non_follow_exp."#"; // "#^http://www\.foo\.com/bla/#"
-        
+
       $non_follow_expressions[] = $non_follow_exp;
     }
     
