@@ -12,9 +12,11 @@ class WSCrawler extends PHPCrawler {
   $s=$p->source;
   if($c==200 && $s!=""){
    $html = str_get_html($s);
-   if(is_object($html) && $html->find("title", 0)){
-    $t=$html->find("title", 0)->innertext;
-    echo $u."<br/>";
+   if(is_object($html)){
+    if($html->find("title", 0)){
+     $t=$html->find("title", 0)->innertext;
+     echo $u."<br/>";
+    }
    }
    $html->clear(); 
    unset($html);
