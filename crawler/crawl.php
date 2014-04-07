@@ -9,7 +9,7 @@ class WSCrawler extends PHPCrawler {
  function handleDocumentInfo(PHPCrawlerDocumentInfo $p) { 
   $u=$p->url;
   $s=$p->http_status_code;
-  if($s==200){
+  if($s==200 && $p->source!=""){
    $html = str_get_html($p->source);
    $t=$html->find("title", 0) ? $html->find("title", 0)->innertext:"";
    foreach($p->links_found as $v){
@@ -19,7 +19,6 @@ class WSCrawler extends PHPCrawler {
  }
 }
 function crawlInit($u){
- $u=preg_replace("(https?://)", "", $u);
  $uen=urlencode($u);
  if(array_search($uen, $GLOBALS['crawled'])===false && $GLOBALS['maxtime'] > time()){
   $GLOBALS['crawled'][]=$uen;
@@ -38,5 +37,5 @@ function crawlNow($u){
  $C->setFollowMode(0);
  $C->go();
 }
-crawlInit("http://subins.com");
+crawlInit("http://www.google.com");
 ?>
