@@ -1,5 +1,5 @@
 <?
-if(!isset($crawlToken) && $crawlToken==418941){
+if(!isset($crawlToken) || $crawlToken!=418941){
  die("Error");
 }
 set_include_path('/var/lib/openshift/53400ee04382ec99f6000125/app-root/runtime/repo/crawler');
