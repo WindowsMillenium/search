@@ -6,8 +6,8 @@
 #####################################################
 
 // Username and password for the test-interface-login.
-$cfg_authUsername = "";
-$cfg_authPassword = "";
+$cfg_authUsername = "admin";
+$cfg_authPassword = "dudeWhere'sMyCar";
 
 #####################################################
 

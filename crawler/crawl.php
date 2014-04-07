@@ -29,5 +29,5 @@ function crawlAdd($u){
   $C->go();
  }
 }
-crawlAdd("http://www.youtube.com");
+crawlAdd("http://subins.com");
 ?>
