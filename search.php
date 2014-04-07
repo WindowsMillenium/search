@@ -27,9 +27,9 @@
     <div class="results">
      <?
      foreach($res['results'] as $re){
-      $t=htmlspecialchars($re[0]);
-      $u=htmlspecialchars($re[1]);
-      $d=htmlspecialchars($re[2]);
+      $t=htmlFilt($re[0]);
+      $u=htmlFilt($re[1]);
+      $d=htmlFilt($re[2]);
      ?>
       <div class="result">
        <h3 class="title">

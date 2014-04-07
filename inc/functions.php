@@ -7,6 +7,11 @@ $GLOBALS['displayQ']=$GLOBALS['q'];
 $GLOBALS['q']=strtolower($GLOBALS['q']);
 $GLOBALS['dbh']=$dbh;
 
+function htmlFilt($s){
+ $s=str_replace("<", "&lt;", $s);
+ $s=str_replace(">", "&gt;", $s);
+ return $s;
+}
 function head($title="", $IncOtherCss=array()){
  $title=$title=="" ? "Web Search" : $title." - Web Search";
  /* Display The <title> tag */
