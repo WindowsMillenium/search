@@ -74,7 +74,7 @@ input[type="text"]:hover{
 input[type="text"]:active, input[type="text"]:focus{
  border: 1px solid #4585F1;
 }
-button{
+button, .button{
  padding:5px 10px;
  display: inline-block;
  vertical-align:middle;
@@ -89,7 +89,7 @@ button{
  color:white;
  border-radius:2px;
 }
-button:hover{
+button:hover, .button:hover{
  box-shadow: inset 0 2px 2px rgba(0,0,0,0.1);
 }
 .searchForm .shape-search{

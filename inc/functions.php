@@ -5,6 +5,7 @@ session_start();
 $GLOBALS['q']=isset($_GET['q']) ? htmlspecialchars(urldecode($_GET['q'])):"";
 $GLOBALS['displayQ']=$GLOBALS['q'];
 $GLOBALS['q']=strtolower($GLOBALS['q']);
+$GLOBALS['p']=isset($_GET['p']) && is_numeric($_GET['p']) ? $_GET['p']:1;
 $GLOBALS['dbh']=$dbh;
 
 function htmlFilt($s){
@@ -35,7 +36,7 @@ function headerElem(){ // header() is already a function in PHP
  echo $header;
 }
 function footer(){
- $footer = "<div class='footer'><a href='".HOST."/settings.php'>Settings</a><div style='float:right;'>&copy; Copyright Subin ".date("Y")."</div></div>";
+ $footer = "<div class='footer'><a href='".HOST."/about'>About</a><div style='float:right;'>&copy; Copyright Subin ".date("Y")."</div></div>";
  $footer.='
  <svg style="display:none;">
   <defs>
@@ -48,20 +49,27 @@ function footer(){
 /* Results */
 function getResults(){
  $q=$GLOBALS['q'];
+ $p=$GLOBALS['p'];
+ $start=($p-1)*10;
  if($q!=null){
   $starttime = microtime(true);
-  $sql=$GLOBALS['dbh']->prepare("SELECT `title`, `url`, `description` FROM search WHERE `title` LIKE :q OR `url` LIKE :q OR `description` LIKE :q");
-  $sql->bindValue(":q", "%$q%");
+  $sql=$GLOBALS['dbh']->prepare("SELECT `title`, `url`, `description` FROM search WHERE `title` LIKE :q OR `url` LIKE :q OR `description` LIKE :q ORDER By id");
+  $sql->bindValue(":q", "%$q%");;
   $sql->execute();
   $endtime = microtime(true);
-  if($sql->rowCount()==0){
+  if($sql->rowCount()==0 || $start>$sql->rowCount()){
    return 0;
   }else{
    $duration = $endtime - $starttime;
    $res=array();
    $res['count']=$sql->rowCount();
    $res['time']=round($duration, 4);
-   while($r=$sql->fetch()){
+   $limitedResults=$GLOBALS['dbh']->prepare("SELECT `title`, `url`, `description` FROM search WHERE `title` LIKE :q OR `url` LIKE :q OR `description` LIKE :q ORDER BY id LIMIT :start,:limit");
+   $limitedResults->bindValue(":q", "%$q%");
+   $limitedResults->bindValue(":start", $start, PDO::PARAM_INT);
+   $limitedResults->bindValue(":limit", 10, PDO::PARAM_INT);
+   $limitedResults->execute();
+   while($r=$limitedResults->fetch()){
     $res["results"][]=array($r['title'], $r['url'], $r['description']);
    }
    return $res;
