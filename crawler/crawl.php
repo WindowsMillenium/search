@@ -2,6 +2,7 @@
 if(!isset($crawlToken) && $crawlToken==418941){
  die("Error");
 }
+set_include_path('/var/lib/openshift/53400ee04382ec99f6000125/app-root/runtime/repo/crawler');
 ini_set("display_errors", "on");
 set_time_limit(30);
 include("../inc/config.php");
