@@ -8,12 +8,14 @@ $GLOBALS['crawled']=array();
 class WSCrawler extends PHPCrawler { 
  function handleDocumentInfo(PHPCrawlerDocumentInfo $p) { 
   $u=$p->url;
-  $s=$p->http_status_code;
-  echo $p->source;
-  if($s==200 && $p->source!=""){
-   $html = str_get_html($p->source);
+  $c=$p->http_status_code;
+  $s=$p->source;
+  if($c==200 && $s!=""){
+   $html = str_get_html($s);
    if($html->find("title", 0)){
     $t=$html->find("title", 0)->innertext;
+    $html->clear(); 
+    unset($html);
     echo $u."<br/>";
    }
   }
