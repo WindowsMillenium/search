@@ -13,7 +13,7 @@ class WSCrawler extends PHPCrawler {
    $html = str_get_html($p->source);
    $t=$html->find("title", 0) ? $html->find("title", 0)->innertext:"";
    foreach($p->links_found as $v){
-    $v['link_raw']=substr($v['link_raw'], 0, 1)=="/" ? $u.$v['link_raw']:$v['link_raw']; 
+    $v['link_raw']=substr($v['link_raw'], 0, 1)=="/" ? $u."/".$v['link_raw']:$v['link_raw']; 
     crawlInit($v['link_raw']);
    }
   }
