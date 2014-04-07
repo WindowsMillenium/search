@@ -1,5 +1,5 @@
 <?
-if(!isset($crawlToken)){
+if(!isset($crawlToken) && $crawlToken==418941){
  die("Error");
 }
 ini_set("display_errors", "on");
