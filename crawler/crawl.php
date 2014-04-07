@@ -4,7 +4,7 @@ if(!isset($crawlToken) || $crawlToken!=418941){
 }
 ini_set("display_errors", "on");
 set_time_limit(30);
-$dir=realpath(dirname(str_replace("includes","",__FILE__)));
+$dir=realpath(dirname(__FILE__));
 include($dir."/../inc/config.php");
 include($dir."/PHPCrawl/libs/PHPCrawler.class.php");
 include($dir."/simple_html_dom.php");
@@ -69,7 +69,7 @@ function crawl($u){
  $C->setFollowMode(0);
  $C->go();
 }
-// Get the last indexed URLs (If there isn't, use defaulr URL's) & start Crawling
+// Get the last indexed URLs (If there isn't, use default URL's) & start Crawling
 $last=$dbh->query("SELECT `url` FROM search ORDER BY id DESC LIMIT 4");
 if($last->rowCount() < 4){
  crawl("http://subinsb.com"); // The Default URL #1
