@@ -1,4 +1,7 @@
 <?
+if(!isset($crawlToken)){
+ die("Error");
+}
 ini_set("display_errors", "on");
 set_time_limit(30);
 include("../inc/config.php");
