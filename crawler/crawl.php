@@ -17,9 +17,9 @@ class WSCrawler extends PHPCrawler {
      $t=$html->find("title", 0)->innertext;
      echo $u."<br/>";
     }
+    $html->clear(); 
+    unset($html);
    }
-   $html->clear(); 
-   unset($html);
   }
  }
 }
