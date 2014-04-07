@@ -3,7 +3,7 @@ ini_set("display_errors", "on");
 include("PHPCrawl/libs/PHPCrawler.class.php");
 include("simple_html_dom.php");
 
-$GLOBALS['maxtime']=strtotime("+10 seconds");
+$GLOBALS['maxtime']=strtotime("+1 seconds");
 $GLOBALS['crawled']=array();
 class WSCrawler extends PHPCrawler { 
  function handleDocumentInfo(PHPCrawlerDocumentInfo $p) { 
@@ -13,6 +13,7 @@ class WSCrawler extends PHPCrawler {
    $html = str_get_html($p->source);
    $t=$html->find("title", 0) ? $html->find("title", 0)->innertext:"";
    foreach($p->links_found as $v){
+    $v['link_raw']=substr($v['link_raw'], 0, 1)=="/" ? $u.$v['link_raw']:$v['link_raw']; 
     crawlInit($v['link_raw']);
    }
   }
@@ -26,8 +27,9 @@ function crawlInit($u){
   crawlNow($u);
  }
 }
+$C = new WSCrawler();
 function crawlNow($u){
- $C = new WSCrawler();
+ global $C;
  $C->setURL($u);
  $C->addContentTypeReceiveRule("#text/html#");
  $C->addURLFilterRule("#(jpg|gif|png|pdf|jpeg|svg|css|js)$# i");
