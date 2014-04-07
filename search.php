@@ -27,13 +27,13 @@
     <div class="results">
      <?
      foreach($res['results'] as $re){
-      $t=$re[0];
-      $u=$re[1];
-      $d=$re[2];
+      $t=htmlspecialchars($re[0]);
+      $u=htmlspecialchars($re[1]);
+      $d=htmlspecialchars($re[2]);
      ?>
       <div class="result">
        <h3 class="title">
-        <a target="<?echo isset($_SESSION['newW']) ? '_blank':'';?>" onmousedown="this.href='<?echo HOST;?>/url.php?u='+encodeURIComponent(this.getAttribute('data-href'));" data-href="<?echo $u;?>" href="<?echo $u;?>"><?echo strlen($t)>59 ? substr($re[0], 0, 59)."..":$re[0];?></a>
+        <a target="<?echo isset($_SESSION['newW']) ? '_blank':'';?>" onmousedown="this.href='<?echo HOST;?>/url.php?u='+encodeURIComponent(this.getAttribute('data-href'));" data-href="<?echo $u;?>" href="<?echo $u;?>"><?echo strlen($t)>59 ? substr($t, 0, 59)."..":$t;?></a>
        </h3>
        <p class="url" title="<?echo $u;?>"><?echo $u;?></p>
        <p class="description"><?echo $d;?></p>
