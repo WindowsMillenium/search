@@ -17,6 +17,8 @@ function addURL($t, $u, $d){
   $t=preg_replace("/\s+/", " ", $t);
   $t=substr($t, 0, 1)==" " ? substr_replace($t, "", 0, 1):$t;
   $t=substr($t, -1)==" " ? substr_replace($t, "", -1, 1):$t;
+  $t=html_entity_decode($t, ENT_QUOTES);
+  $d=html_entity_decode($d, ENT_QUOTES);
   if($check->rowCount()==0){
    $sql=$dbh->prepare("INSERT INTO `search` (`title`, `url`, `description`) VALUES (?, ?, ?)");
    $sql->execute(array(
