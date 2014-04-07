@@ -2,7 +2,7 @@
 /* Configuration */
 ini_set("display_errors", "on"); // Do you want to see the errors ?
 define("HOST", "http://search.subinsb.com"); // No '/' at the end
-if(preg_match("/\.local/", HOST){
+if(preg_match("/\.local/", HOST)){
  $host = "localhost"; // Hostname
  $port = "3306"; // MySQL Port; Default : 3306
  $user = "root"; // Username Here

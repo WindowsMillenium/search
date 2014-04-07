@@ -10,10 +10,7 @@ $GLOBALS['dbh']=$dbh;
 function head($title="", $IncOtherCss=array()){
  $title=$title=="" ? "Web Search" : $title." - Web Search";
  /* Display The <title> tag */
- echo "<title>
-   $title
-  </title>
- ";
+ echo "<title>$title</title>";
  /* The Stylesheets */
  $cssFiles = array_merge(
   array(

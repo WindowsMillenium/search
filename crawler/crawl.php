@@ -59,11 +59,22 @@ function crawl($u){
  $C->setURL($u);
  $C->addContentTypeReceiveRule("#text/html#");
  $C->addURLFilterRule("#(jpg|gif|png|pdf|jpeg|svg|css|js)$# i");
- $C->setPageLimit(100, true);
+ $C->setPageLimit(25, true);
  $C->obeyRobotsTxt(true);
  $C->setUserAgentString("DingoBot (http://search.subinsb.com/about/bot.php)");
  $C->setFollowMode(0);
  $C->go();
 }
-crawl("http://www.google.com");
+// Get the last indexed URL & start Crawling
+$last=$dbh->query("SELECT `url` FROM search ORDER BY id LIMIT 4");
+if($last->rowCount() < 4){
+ crawl("http://subinsb.com"); // The Default URL #1
+ crawl("http://www.google.com"); // The Default URL #2
+ crawl("http://www.facebook.com"); // The Default URL #3
+ crawl("http://open.subinsb.com"); // The Default URL #4
+}else{
+ while($result=$sql->fetch()){
+  crawl($result['url']);
+ }
+}
 ?>
