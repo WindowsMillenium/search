@@ -3,7 +3,7 @@ ini_set("display_errors", "on");
 include("PHPCrawl/libs/PHPCrawler.class.php");
 include("simple_html_dom.php");
 
-$GLOBALS['maxtime']=strtotime("+1 second");
+$GLOBALS['maxtime']=strtotime("+10 seconds");
 $GLOBALS['crawled']=array();
 class WSCrawler extends PHPCrawler { 
  function handleDocumentInfo(PHPCrawlerDocumentInfo $p) { 
@@ -19,7 +19,7 @@ class WSCrawler extends PHPCrawler {
  }
 }
 function crawlInit($u){
- $u=preg_replace("(https?://)", "//", $u);
+ $u=preg_replace("(https?://)", "", $u);
  $uen=urlencode($u);
  if(array_search($uen, $GLOBALS['crawled'])===false && $GLOBALS['maxtime'] > time()){
   $GLOBALS['crawled'][]=$uen;
@@ -32,7 +32,7 @@ function crawlNow($u){
  $C->setURL($u);
  $C->addContentTypeReceiveRule("#text/html#");
  $C->addURLFilterRule("#(jpg|gif|png|pdf|jpeg|svg|css|js)$# i");
- $C->setPageLimit(100, true);
+ $C->setPageLimit(10, true);
  $C->obeyRobotsTxt(true);
  $C->setUserAgentString("Dingo Bot (http://search.subinsb.com/about/bot.php)");
  $C->setFollowMode(0);
