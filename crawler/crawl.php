@@ -32,11 +32,11 @@ function crawlNow($u){
  $C->setURL($u);
  $C->addContentTypeReceiveRule("#text/html#");
  $C->addURLFilterRule("#(jpg|gif|png|pdf|jpeg|svg|css|js)$# i");
- $C->setPageLimit(10, true);
+ $C->setPageLimit(100, true);
  $C->obeyRobotsTxt(true);
  $C->setUserAgentString("Dingo Bot (http://search.subinsb.com/about/bot.php)");
  $C->setFollowMode(0);
  $C->go();
 }
-crawlInit("http://www.google.com");
+crawlInit("http://subins.com");
 ?>
