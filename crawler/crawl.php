@@ -14,10 +14,10 @@ class WSCrawler extends PHPCrawler {
    $html = str_get_html($s);
    if($html->find("title", 0)){
     $t=$html->find("title", 0)->innertext;
-    $html->clear(); 
-    unset($html);
     echo $u."<br/>";
    }
+   $html->clear(); 
+   unset($html);
   }
  }
 }
