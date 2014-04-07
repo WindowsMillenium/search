@@ -36,7 +36,7 @@ function headerElem(){ // header() is already a function in PHP
  echo $header;
 }
 function footer(){
- $footer = "<div class='footer'><a href='".HOST."/about'>About</a><a href='".HOST."/about/stats.php'>Stats</a><div style='float:right;'>&copy; Copyright Subin ".date("Y")."</div></div>";
+ $footer = "<div class='footer'><a href='".HOST."/about'>About</a><a href='".HOST."/about/stats.php'>Stats</a><a href='".HOST."/about/bot.php'>Dingo</a><div style='float:right;'>&copy; Copyright Subin ".date("Y")."</div></div>";
  $footer.='
  <svg style="display:none;">
   <defs>

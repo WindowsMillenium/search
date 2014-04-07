@@ -1,11 +1,12 @@
 <?include("../inc/functions.php");?>
 <html>
  <head>
-  <?head("Web Search Bot");?>
+  <?head("About");?>
  </head>
  <body>
   <?headerElem();?>
   <div class="container">
+   <h2>About</h2>
    <p>Web Search is a simple software written in PHP that<br/>functions as a search engine. It's called as WS</p>
    <p>WS's crawler is named Dingo. It will crawl 100 pages<br/>each minute and indexes them.</p>
    <p>WS don't store any cookies and is perfectly safe.</p>

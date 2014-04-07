@@ -1,7 +1,7 @@
 <?include("../inc/functions.php");?>
 <html>
  <head>
-  <?head("Web Search Bot");?>
+  <?head("Stats");?>
  </head>
  <body>
   <?headerElem();?>
@@ -15,7 +15,7 @@
    echo $sql->fetchColumn();
    ?>
    </strong>
-   <h3>Last Crawled URL's</h3>
+   <h3>Last Crawled URLs</h3>
    <ul style="width: 400px;overflow: auto;">
    <?
    $sql=$dbh->query("SELECT `url` FROM `search` ORDER BY id DESC LIMIT 5");
