@@ -2,12 +2,12 @@
 if(!isset($crawlToken) || $crawlToken!=418941){
  die("Error");
 }
-set_include_path('/var/lib/openshift/53400ee04382ec99f6000125/app-root/runtime/repo/crawler');
 ini_set("display_errors", "on");
 set_time_limit(30);
-include("../inc/config.php");
-include("PHPCrawl/libs/PHPCrawler.class.php");
-include("simple_html_dom.php");
+$dir=realpath(dirname(str_replace("includes","",__FILE__)));
+include($dir."/../inc/config.php");
+include($dir."/PHPCrawl/libs/PHPCrawler.class.php");
+include($dir."/simple_html_dom.php");
 
 function addURL($t, $u, $d){
  global $dbh;
@@ -69,7 +69,7 @@ function crawl($u){
  $C->setFollowMode(0);
  $C->go();
 }
-// Get the last indexed URL & start Crawling
+// Get the last indexed URLs (If there isn't, use defaulr URL's) & start Crawling
 $last=$dbh->query("SELECT `url` FROM search ORDER BY id LIMIT 4");
 if($last->rowCount() < 4){
  crawl("http://subinsb.com"); // The Default URL #1
