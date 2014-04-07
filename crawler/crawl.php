@@ -9,6 +9,7 @@ class WSCrawler extends PHPCrawler {
  function handleDocumentInfo(PHPCrawlerDocumentInfo $p) { 
   $u=$p->url;
   $s=$p->http_status_code;
+  echo $p->source;
   if($s==200 && $p->source!=""){
    $html = str_get_html($p->source);
    if($html->find("title", 0)){
