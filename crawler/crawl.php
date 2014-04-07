@@ -27,7 +27,7 @@ function crawlNow($u){
  $C->setPageLimit(10, true);
  $C->obeyRobotsTxt(true);
  $C->setUserAgentString("Dingo Bot (http://search.subinsb.com/about/bot.php)");
- $C->setFollowMode(2);
+ $C->setFollowMode(0);
  $C->go();
 }
 crawlInit("http://www.google.com");
