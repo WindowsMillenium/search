@@ -77,7 +77,7 @@ if($last->rowCount() < 4){
  crawl("http://www.facebook.com"); // The Default URL #3
  crawl("http://open.subinsb.com"); // The Default URL #4
 }else{
- while($result=$sql->fetch()){
+ while($result=$last->fetch()){
   crawl($result['url']);
  }
 }
