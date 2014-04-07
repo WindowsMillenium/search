@@ -11,23 +11,23 @@ class WSCrawler extends PHPCrawler {
   }
  }
 }
-$C = new WSCrawler();
 function crawlAdd($u){
- global $C;
  $uen=urlencode($u);
  if(array_search($uen, $GLOBALS['crawled'])===false){
   $GLOBALS['crawled'][]=$uen;
-  echo $u."<br/>";
+  $C = new WSCrawler();
   $C->setURL($u);
   $C->addContentTypeReceiveRule("#text/html#");
-  $C->addURLFilterRule("#\.(jpg|jpeg|gif|png|svg|css|js)$# i");
-  $C->setTrafficLimit(1000 * 1024);
-  $C->setPageLimit(10, true);
+  $C->addURLFilterRule("#(jpg|gif|png|pdf|jpeg|svg|css|js)$# i");
+  $C->setPageLimit(100, true);
   $C->obeyRobotsTxt(true);
   $C->setUserAgentString("Dingo Bot (http://search.subinsb.com/about/bot.php)");
   $C->setFollowMode(0);
+  $C->force_output_flushing = true;
+  echo $u."<br/>";
+  flush();
   $C->go();
  }
 }
-crawlAdd("http://subins.com");
+crawlAdd("http://www.google.com");
 ?>
