@@ -50,6 +50,9 @@ body{
  background: #EEE;
  padding: 5px 20px;
 }
+.footer a{
+ margin-right:5px;
+}
 /* Default Styles */
 a[href]{
  text-decoration:none;
