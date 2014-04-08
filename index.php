@@ -16,6 +16,8 @@
       </button>
      </div>
       <p>Free, Open Source & Anonymous</p>
+      <p><a href="https://github.com/subins2000/search">GitHub (Source Code)</a></p>
+      <p><a href="about">About</a></p>
     </form>
    </center>
   </div>
