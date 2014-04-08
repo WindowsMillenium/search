@@ -21,6 +21,7 @@ function addURL($t, $u, $d){
   $t=substr($t, -1)==" " ? substr_replace($t, "", -1, 1):$t;
   $t=html_entity_decode($t, ENT_QUOTES);
   $d=html_entity_decode($d, ENT_QUOTES);
+  echo $u;
   if($check->rowCount()==0){
    $sql=$dbh->prepare("INSERT INTO `search` (`title`, `url`, `description`) VALUES (?, ?, ?)");
    $sql->execute(array(
