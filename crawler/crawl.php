@@ -86,7 +86,7 @@ if($count < 4){
 }else{
  $crawlLast=$dbh->prepare("SELECT `url` FROM search LIMIT ?, 4");
  $crawlLast->execute(array(
-  rand(0, $count)
+  rand(0, $count-4)
  ));
  while($result=$crawlLast->fetch()){
   crawl($result['url']);
