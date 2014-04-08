@@ -30,6 +30,9 @@
       $t=htmlFilt($re[0]);
       $u=htmlFilt($re[1]);
       $d=htmlFilt($re[2]);
+      if(strlen($GLOBALS['q']) > 2){
+       $d=str_replace($GLOBALS['q'], "<strong>{$GLOBALS['q']}</strong>", $d);
+      }
      ?>
       <div class="result">
        <h3 class="title">

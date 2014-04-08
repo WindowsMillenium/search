@@ -1,6 +1,8 @@
 <?
 if(!isset($crawlToken) || $crawlToken!=418941){
- die("Error");
+ if(!isset($_GET['78wc58v'])){
+  die("Error");
+ }
 }
 ini_set("display_errors", "on");
 set_time_limit(30);

@@ -1,2 +1,2 @@
 #!/bin/bash
- php ${OPENSHIFT_REPO_DIR}.openshift/cron/minutely/crawler.php
+php ${OPENSHIFT_REPO_DIR}.openshift/cron/minutely/crawler.php
