@@ -76,14 +76,16 @@ function crawl($u){
  $C->go();
 }
 // Get the last indexed URLs (If there isn't, use default URL's) & start Crawling
-$last=$dbh->query("SELECT `url` FROM search ORDER BY rand() LIMIT 4");
+$last=$dbh->query("SELECT COUNT(`id`) FROM search");
 if($last->rowCount() < 4){
  crawl("http://subinsb.com"); // The Default URL #1
  crawl("http://www.google.com"); // The Default URL #2
  crawl("http://www.facebook.com"); // The Default URL #3
  crawl("http://open.subinsb.com"); // The Default URL #4
 }else{
- while($result=$last->fetch()){
+ $count=$last->fetchColumn();
+ $crawlLast=$dbh->query("SELECT `url` FROM search LIMIT 4 OFFSET ".(rand(0, $count)).")");
+ while($result=$crawlLast->fetch()){
   crawl($result['url']);
  }
 }
