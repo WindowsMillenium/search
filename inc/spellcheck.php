@@ -5,6 +5,7 @@ class SpellCheck{
   return true;
  }
  private function makeURL($s){
+  $s=urlencode($s);
   $url=$this->url."?client=t&sl=en&tl=en&hl=en&sc=2&ie=UTF-8&oe=UTF-8&oc=1&otf=2&ssel=3&tsel=0";
   $url.="&q=$s";
   return $url;
