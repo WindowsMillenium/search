@@ -5,7 +5,7 @@ if(!isset($crawlToken) || $crawlToken!=418941){
  }
 }
 ini_set("display_errors", "on");
-set_time_limit(30);
+set_time_limit(15);
 $dir=realpath(dirname(__FILE__));
 include($dir."/../inc/config.php");
 include($dir."/PHPCrawl/libs/PHPCrawler.class.php");
@@ -68,7 +68,7 @@ function crawl($u){
  $C->setURL($u);
  $C->addContentTypeReceiveRule("#text/html#");
  $C->addURLFilterRule("#(jpg|gif|png|pdf|jpeg|svg|css|js)$# i");
- $C->setPageLimit(100, false);
+ $C->setPageLimit(25, true);
  $C->setTrafficLimit(3000 * 1024);
  $C->obeyRobotsTxt(true);
  $C->setUserAgentString("DingoBot (http://search.subinsb.com/about/bot.php)");
