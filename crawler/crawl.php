@@ -86,7 +86,7 @@ if($count < 4){
 }else{
  $start=rand(0, $count-4);
  $crawlLast=$dbh->prepare("SELECT `url` FROM search LIMIT :start, 4");
- $limitedResults->bindValue(":start", $start, PDO::PARAM_INT);
+ $crawlLast->bindValue(":start", $start, PDO::PARAM_INT);
  $crawlLast->execute();
  while($result=$crawlLast->fetch()){
   crawl($result['url']);
