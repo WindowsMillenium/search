@@ -5,7 +5,7 @@ if(!isset($crawlToken) || $crawlToken!=418941){
  }
 }
 ini_set("display_errors", "on");
-set_time_limit(15);
+set_time_limit(30);
 $dir=realpath(dirname(__FILE__));
 include($dir."/../inc/config.php");
 include($dir."/PHPCrawl/libs/PHPCrawler.class.php");
