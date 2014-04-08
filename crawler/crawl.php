@@ -84,10 +84,10 @@ if($count < 4){
  crawl("http://www.facebook.com"); // The Default URL #3
  crawl("http://open.subinsb.com"); // The Default URL #4
 }else{
- $crawlLast=$dbh->prepare("SELECT `url` FROM search LIMIT ?, 4");
- $crawlLast->execute(array(
-  rand(0, $count-4)
- ));
+ $start=rand(0, $count-4);
+ $crawlLast=$dbh->prepare("SELECT `url` FROM search LIMIT :start, 4");
+ $limitedResults->bindValue(":start", $start, PDO::PARAM_INT);
+ $crawlLast->execute();
  while($result=$crawlLast->fetch()){
   crawl($result['url']);
  }
