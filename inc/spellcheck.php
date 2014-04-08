@@ -5,16 +5,19 @@ class SpellCheck{
   return true;
  }
  private function makeURL($s){
-  $s=urlencode($s);
-  $url=$this->url."?client=t&sl=en&tl=en&hl=en&sc=2&ie=UTF-8&oe=UTF-8&oc=1&otf=2&ssel=3&tsel=0";
+  $s=str_replace(" ", "%20", $s);
+  $url=$this->url."?client=t&sl=en&tl=en&hl=en&sc=2&ie=UTF-8&oe=UTF-8&uptl=en&oc=1&otf=1&ssel=3&tsel=0";
   $url.="&q=$s";
   return $url;
  }
  public function check($s){
+  $a="";
   $c=file_get_contents($this->makeURL($s));
-  preg_match('/e","(.*?)",/', $c, $m);
-  $a=isset($m[1]) ? $m[1]:"";
-  $a=str_replace('",', '', $a);
+  preg_match('/u003e","(.*?)",\[1]/', $c, $m);
+  if(isset($m[1])){
+   $a=$m[1];
+   $a=str_replace('",', '', $a);
+  }
   return $a;
  }
 }
