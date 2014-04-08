@@ -21,7 +21,7 @@ function addURL($t, $u, $d){
   $t=substr($t, -1)==" " ? substr_replace($t, "", -1, 1):$t;
   $t=html_entity_decode($t, ENT_QUOTES);
   $d=html_entity_decode($d, ENT_QUOTES);
-  echo $u;
+  echo $u."\n";
   if($check->rowCount()==0){
    $sql=$dbh->prepare("INSERT INTO `search` (`title`, `url`, `description`) VALUES (?, ?, ?)");
    $sql->execute(array(
@@ -69,7 +69,7 @@ function crawl($u){
  $C->addContentTypeReceiveRule("#text/html#");
  $C->addURLFilterRule("#(jpg|gif|png|pdf|jpeg|svg|css|js)$# i");
  $C->setPageLimit(25, false);
- $C->setTrafficLimit(1000 * 1024);
+ $C->setTrafficLimit(5000 * 1024);
  $C->obeyRobotsTxt(true);
  $C->setUserAgentString("DingoBot (http://search.subinsb.com/about/bot.php)");
  $C->setFollowMode(0);
