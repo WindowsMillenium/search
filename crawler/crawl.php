@@ -76,7 +76,7 @@ function crawl($u){
  $C->go();
 }
 // Get the last indexed URLs (If there isn't, use default URL's) & start Crawling
-$last=$dbh->query("SELECT `url` FROM search ORDER BY id DESC LIMIT 4");
+$last=$dbh->query("SELECT `url` FROM search ORDER BY rand() LIMIT 4");
 if($last->rowCount() < 4){
  crawl("http://subinsb.com"); // The Default URL #1
  crawl("http://www.google.com"); // The Default URL #2
