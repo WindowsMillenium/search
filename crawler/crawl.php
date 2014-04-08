@@ -84,7 +84,10 @@ if($count < 4){
  crawl("http://www.facebook.com"); // The Default URL #3
  crawl("http://open.subinsb.com"); // The Default URL #4
 }else{
- $crawlLast=$dbh->query("SELECT `url` FROM search LIMIT 4 OFFSET ".(rand(0, $count)).")");
+ $crawlLast=$dbh->prepare("SELECT `url` FROM search LIMIT ?, 4");
+ $crawlLast->execute(array(
+  rand(0, $count)
+ ));
  foreach($crawlLast as $result){
   crawl($result['url']);
  }
