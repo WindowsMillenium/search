@@ -88,7 +88,7 @@ if($count < 4){
  $crawlLast->execute(array(
   rand(0, $count)
  ));
- foreach($crawlLast as $result){
+ while($result=$crawlLast->fetch()){
   crawl($result['url']);
  }
 }
