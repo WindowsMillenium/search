@@ -68,8 +68,7 @@ function crawl($u){
  $C->setURL($u);
  $C->addContentTypeReceiveRule("#text/html#");
  $C->addURLFilterRule("#(jpg|gif|png|pdf|jpeg|svg|css|js)$# i");
- $C->setPageLimit(50, true);
- $C->setTrafficLimit(3000 * 1024);
+ $C->setTrafficLimit(5000 * 1024);
  $C->obeyRobotsTxt(true);
  $C->setUserAgentString("DingoBot (http://search.subinsb.com/about/bot.php)");
  $C->setFollowMode(0);

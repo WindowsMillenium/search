@@ -10,6 +10,12 @@
    if($GLOBALS['q']==""){
     echo "<script>document.getElementById('query').focus();</script>";
    }else{
+    require "inc/spellcheck.php";
+    $SC=new SpellCheck();
+    $corSp=$SC->check($GLOBALS['q']);
+    if($corSp!=""){
+     echo "<p style='color:red;font-size:15px;margin-bottom:10px'>Did you mean ? <br/><a href='?q=$corSp'>".$corSp."</a></p>";
+    }
     $res=getResults();
     if($res==0){
      echo "<p>Sorry, no results were found</p><h3>Search Suggestions</h3>";
