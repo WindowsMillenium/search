@@ -57,7 +57,7 @@
      $start=1;
      if($GLOBALS['p'] > 5 && $count > ($GLOBALS['p'] + 4)){
       $start=$GLOBALS['p']-4;
-      $count=$count > ($start+9) ? ($start+9):$count;
+      $count=$count > ($start+10) ? ($start+10):$count;
      }elseif($GLOBALS['p'] > 5){
       $start=$GLOBALS['p']==($count-1) ? $GLOBALS['p']-8:1;
       if($GLOBALS['p']==($count-2)){
@@ -72,7 +72,7 @@
      }
      for($i=$start;$i<$count;$i++){
       $isC=$GLOBALS['p']==$i ? 'current':'';
-      echo "<a href='?p=$i&q={$GLOBALS['q']}' class='button $isC'>$i</a>";
+      echo "<a href='?p=$i&q={$GLOBALS['displayQ']}' class='button $isC'>$i</a>";
      }
      ?>
     </div>
