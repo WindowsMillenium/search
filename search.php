@@ -53,26 +53,29 @@
     </div>
     <div class="pages">
      <?
-     $count=(ceil($res['count']/10)) + 1;
+     $count=(ceil($res['count']/10));
      $start=1;
      if($GLOBALS['p'] > 5 && $count > ($GLOBALS['p'] + 4)){
       $start=$GLOBALS['p']-4;
-      $count=$count > ($start+10) ? ($start+10):$count;
+      $count=$count > ($start+8) ? ($start+8):$count;
      }elseif($GLOBALS['p'] > 5){
-      $start=$GLOBALS['p']==($count-1) ? $GLOBALS['p']-8:1;
-      if($GLOBALS['p']==($count-2)){
+      if($GLOBALS['p']==$count){
+       $start=$GLOBALS['p']-8;
+      }elseif($GLOBALS['p']==($count-1)){
        $start=$GLOBALS['p']-7;
-      }elseif($GLOBALS['p']==($count-3)){
+      }elseif($GLOBALS['p']==($count-2)){
        $start=$GLOBALS['p']-6;
-      }elseif($GLOBALS['p']==($count-4)){
+      }elseif($GLOBALS['p']==($count-3)){
        $start=$GLOBALS['p']-5;
+      }elseif($GLOBALS['p']==($count-4)){
+       $start=$GLOBALS['p']-4;
       }
-     }elseif($GLOBALS['p'] <= 5 && $count > ($GLOBALS['p'] + 4)){
-      $count=$start+9;
+     }elseif($GLOBALS['p'] <= 5 && $count > ($GLOBALS['p'] + 5)){
+      $count=$start+8;
      }
-     for($i=$start;$i<$count;$i++){
+     for($i=$start;$i<=$count;$i++){
       $isC=$GLOBALS['p']==$i ? 'current':'';
-      echo "<a href='?p=$i&q={$GLOBALS['displayQ']}' class='button $isC'>$i</a>";
+      echo "<a href='?p=$i&q={$GLOBALS['q']}' class='button $isC'>$i</a>";
      }
      ?>
     </div>
