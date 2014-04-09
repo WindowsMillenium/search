@@ -12,7 +12,7 @@ function shutdown(){
   if($a==null)
    echo "No errors";
   else
-   file_put_contents($dir."/crawlStatus.tx", "0");
+   file_put_contents($dir."/crawlStatus.txt", "0");
    include($dir."/runCrawl.php");
    print_r($a);
 }
