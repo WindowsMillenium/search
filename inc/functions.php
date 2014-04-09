@@ -2,7 +2,7 @@
 include("config.php");
 
 session_start();
-$GLOBALS['q']=isset($_GET['q']) ? htmlspecialchars(urldecode($_GET['q'])):"";
+$GLOBALS['q']=isset($_GET['q']) ? htmlspecialchars(urldecode(urlencode($_GET['q']))):"";
 $GLOBALS['displayQ']=$GLOBALS['q'];
 $GLOBALS['q']=strtolower($GLOBALS['q']);
 $GLOBALS['p']=isset($_GET['p']) && is_numeric($_GET['p']) ? $_GET['p']:1;
