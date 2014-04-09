@@ -6,9 +6,10 @@
  <body>
   <?headerElem();?>
   <div class="container">
+   <script>document.getElementById('query').focus();</script>
    <?
    if($GLOBALS['q']==""){
-    echo "<script>document.getElementById('query').focus();</script>";
+    echo "A query please...";
    }else{
     require "inc/spellcheck.php";
     $SC=new SpellCheck();
