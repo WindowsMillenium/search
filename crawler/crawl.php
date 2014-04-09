@@ -92,14 +92,12 @@ if(!isset($url4Array)){
  // Get the last indexed URLs (If there isn't, use default URL's) & start Crawling
  $last=$dbh->query("SELECT COUNT(`id`) FROM search");
  $count=$last->fetchColumn();
- if($count < 4){
+ if($count < 2){
   crawl("http://subinsb.com"); // The Default URL #1
   crawl("http://www.google.com"); // The Default URL #2
-  crawl("http://www.facebook.com"); // The Default URL #3
-  crawl("http://open.subinsb.com"); // The Default URL #4
  }else{
-  $start=rand(0, $count-4);
-  $crawlLast=$dbh->prepare("SELECT `url` FROM search LIMIT :start, 4");
+  $start=rand(0, $count-2);
+  $crawlLast=$dbh->prepare("SELECT `url` FROM search LIMIT :start, 2");
   $crawlLast->bindValue(":start", $start, PDO::PARAM_INT);
   $crawlLast->execute();
   while($result=$crawlLast->fetch()){
