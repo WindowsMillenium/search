@@ -1,7 +1,7 @@
 <?include("../inc/functions.php");?>
 <html>
  <head>
-  <?head("Web Search Bot");?>
+  <?head("Dingo, The Web Search Bot");?>
  </head>
  <body>
   <?headerElem();?>
