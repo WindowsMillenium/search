@@ -7,16 +7,11 @@ if(!isset($crawlToken) || $crawlToken!=418941){
 ini_set("display_errors", "on");
 $dir=realpath(dirname(__FILE__));
 function shutdown(){ 
-  global $dir;
-  $a=error_get_last(); 
-  if($a==null)
-   echo "No errors";
-  else
-   file_put_contents($dir."/crawlStatus.txt", "0");
-   include($dir."/runCrawl.php");
-   print_r($a);
+ global $dir;
+ file_put_contents($dir."/crawlStatus.txt", "0");
+ include($dir."/runCrawl.php");
 }
-register_shutdown_function('shutdown'); 
+register_shutdown_function('shutdown');
 set_time_limit(30);
 
 include($dir."/../inc/config.php");
