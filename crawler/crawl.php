@@ -8,8 +8,13 @@ ini_set("display_errors", "on");
 $dir=realpath(dirname(__FILE__));
 function shutdown(){ 
  global $dir;
- file_put_contents($dir."/crawlStatus.txt", "0");
- include($dir."/runCrawl.php");
+ $a=error_get_last(); 
+ if($a==null){
+  echo "No errors";
+ }else{
+  file_put_contents($dir."/crawlStatus.txt", "0");
+  include($dir."/runCrawl.php");
+ }
 }
 register_shutdown_function('shutdown');
 set_time_limit(30);
@@ -85,17 +90,14 @@ function crawl($u){
 }
 if(!isset($url4Array)){
  // Get the last indexed URLs (If there isn't, use default URL's) & start Crawling
- $last=$dbh->query("SELECT COUNT(`id`) FROM search");
- $count=$last->fetchColumn();
+ $last=$dbh->query("SELECT `url` FROM search");
+ $count=$last->rowCount();
  if($count < 2){
   crawl("http://subinsb.com"); // The Default URL #1
   crawl("http://www.google.com"); // The Default URL #2
  }else{
   $start=rand(0, $count-2);
-  $crawlLast=$dbh->prepare("SELECT `url` FROM search LIMIT :start, 2");
-  $crawlLast->bindValue(":start", $start, PDO::PARAM_INT);
-  $crawlLast->execute();
-  while($result=$crawlLast->fetch()){
+  foreach($last->fetchAll() as $result){
    crawl($result['url']);
   }
  }
