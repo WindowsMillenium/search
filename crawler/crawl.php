@@ -10,7 +10,7 @@ function shutdown(){
  global $dir;
  $a=error_get_last(); 
  if($a==null){
-  echo "No errors";
+  
  }else{
   file_put_contents($dir."/crawlStatus.txt", "0");
   include($dir."/runCrawl.php");
@@ -33,7 +33,9 @@ function addURL($t, $u, $d){
   $t=substr($t, -1)==" " ? substr_replace($t, "", -1, 1):$t;
   $t=html_entity_decode($t, ENT_QUOTES);
   $d=html_entity_decode($d, ENT_QUOTES);
-  echo $u."\n";
+  echo $u."<br/>\n";
+  ob_flush();
+  flush();
   if($check->rowCount()==0){
    $sql=$dbh->prepare("INSERT INTO `search` (`title`, `url`, `description`) VALUES (?, ?, ?)");
    $sql->execute(array(
@@ -96,9 +98,10 @@ if(!isset($url4Array)){
   crawl("http://subinsb.com"); // The Default URL #1
   crawl("http://www.google.com"); // The Default URL #2
  }else{
-  $start=rand(0, $count-2);
-  foreach($last->fetchAll() as $result){
-   crawl($result['url']);
+  $urls=$last->fetchAll();
+  for($i=0;$i<2;$i++){
+   $index=rand(0, $count-1);
+   crawl($urls[$index]['url']);
   }
  }
 }elseif(is_array($url4Array)){

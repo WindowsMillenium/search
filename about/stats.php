@@ -18,7 +18,7 @@
    <h3>Last Crawled URLs</h3>
    <ul style="width: 400px;overflow: auto;">
    <?
-   $sql=$dbh->query("SELECT `url` FROM `search` ORDER BY id DESC LIMIT 5");
+   $sql=$dbh->query("SELECT `url` FROM `search` ORDER BY id ASC LIMIT 5");
    while($r=$sql->fetch()){
     echo "<li style='margin-bottom:5px;'>".$r['url']."</li>";
    }
