@@ -8,10 +8,8 @@ ini_set("display_errors", "on");
 $dir=realpath(dirname(__FILE__));
 function shutdown(){ 
  global $dir;
- $a=error_get_last(); 
- if($a==null){
-  
- }else{
+ $error = error_get_last();
+ if($error['type'] === E_ERROR) {
   file_put_contents($dir."/crawlStatus.txt", "0");
   include($dir."/runCrawl.php");
  }
