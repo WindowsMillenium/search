@@ -9,7 +9,7 @@ $dir=realpath(dirname(__FILE__));
 function shutdown(){ 
  global $dir;
  $error = error_get_last();
- if($error['type'] === E_ERROR) {
+ if($error !== NULL && $error['type'] === E_ERROR) {
   file_put_contents($dir."/crawlStatus.txt", "0");
   include($dir."/runCrawl.php");
  }
