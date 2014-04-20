@@ -14,8 +14,8 @@ function shutdown(){
   include($dir."/runCrawl.php");
  }
 }
-register_shutdown_function('shutdown');
 set_time_limit(0);
+register_shutdown_function('shutdown');
 
 include($dir."/../inc/config.php");
 include($dir."/PHPCrawl/libs/PHPCrawler.class.php");
@@ -86,7 +86,7 @@ function crawl($u){
  $C->obeyRobotsTxt(true);
  $C->setUserAgentString("DingoBot (http://search.subinsb.com/about/bot.php)");
  $C->setFollowMode(0);
- $C->go();
+ $C->goMultiProcessed(5, PHPCrawlerMultiProcessModes::MPMODE_PARENT_EXECUTES_USERCODE);
 }
 if(!isset($url4Array)){
  // Get the last indexed URLs (If there isn't, use default URL's) & start Crawling
