@@ -84,23 +84,21 @@ function crawl($u){
   $C->setTrafficLimit(2000 * 1024);
  }
  $C->obeyRobotsTxt(true);
+ $C->obeyNoFollowTags(true);
  $C->setUserAgentString("DingoBot (http://search.subinsb.com/about/bot.php)");
  $C->setFollowMode(0);
- $C->goMultiProcessed(5, PHPCrawlerMultiProcessModes::MPMODE_PARENT_EXECUTES_USERCODE);
+ $C->go();
 }
 if(!isset($url4Array)){
  // Get the last indexed URLs (If there isn't, use default URL's) & start Crawling
  $last=$dbh->query("SELECT `url` FROM search");
  $count=$last->rowCount();
- if($count < 2){
+ if($count < 1){
   crawl("http://subinsb.com"); // The Default URL #1
-  crawl("http://www.google.com"); // The Default URL #2
  }else{
   $urls=$last->fetchAll();
-  for($i=0;$i<2;$i++){
-   $index=rand(0, $count-1);
-   crawl($urls[$index]['url']);
-  }
+  $index=rand(0, $count-1);
+  crawl($urls[$index]['url']);
  }
 }elseif(is_array($url4Array)){
  foreach($url4Array as $url){
