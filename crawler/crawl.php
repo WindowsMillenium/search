@@ -15,6 +15,7 @@ function shutdown(){
  }
 }
 register_shutdown_function('shutdown');
+set_time_limit(0);
 
 include($dir."/../inc/config.php");
 include($dir."/PHPCrawl/libs/PHPCrawler.class.php");
