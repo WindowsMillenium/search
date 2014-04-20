@@ -11,6 +11,7 @@ function shutdown(){
  $error = error_get_last();
  if($error !== NULL && $error['type'] === E_ERROR) {
   file_put_contents($dir."/crawlStatus.txt", "0");
+  echo $dir;
   include($dir."/runCrawl.php");
  }
 }
