@@ -6,19 +6,18 @@ if(!isset($crawlToken) || $crawlToken!=418941){
 }
 ini_set("display_errors", "on");
 $dir=realpath(dirname(__FILE__));
+include($dir."/../inc/config.php");
 function shutdown(){ 
  global $dir;
  $error = error_get_last();
  if($error !== NULL && $error['type'] === E_ERROR) {
   file_put_contents($dir."/crawlStatus.txt", "0");
-  echo $dir;
-  include($dir."/runCrawl.php");
+  get_headers(HOST."/crawler/runCrawl.php");
  }
 }
 set_time_limit(0);
 register_shutdown_function('shutdown');
 
-include($dir."/../inc/config.php");
 include($dir."/PHPCrawl/libs/PHPCrawler.class.php");
 include($dir."/simple_html_dom.php");
 
