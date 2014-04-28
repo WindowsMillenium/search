@@ -54,9 +54,10 @@ function getResults(){
  $start=($p-1)*10;
  if($q!=null){
   $starttime = microtime(true);
-  $sql=$GLOBALS['dbh']->prepare("SELECT `title`, `url`, `description` FROM search WHERE `title` LIKE :q OR `url` LIKE :q OR `description` LIKE :q ORDER By id");
-  $sql->bindValue(":q", "%$q%");;
+  $sql=$GLOBALS['dbh']->prepare("SELECT `title`, `url`, `description` FROM search WHERE `title` LIKE :q OR `url` LIKE :q OR `description` LIKE :q ORDER BY id");
+  $sql->bindValue(":q", "%$q%");
   $sql->execute();
+  $trs=$sql->fetchAll(PDO::FETCH_ASSOC);
   $endtime = microtime(true);
   if($sql->rowCount()==0 || $start>$sql->rowCount()){
    return 0;
@@ -65,12 +66,8 @@ function getResults(){
    $res=array();
    $res['count']=$sql->rowCount();
    $res['time']=round($duration, 4);
-   $limitedResults=$GLOBALS['dbh']->prepare("SELECT `title`, `url`, `description` FROM search WHERE `title` LIKE :q OR `url` LIKE :q OR `description` LIKE :q ORDER BY id LIMIT :start,:limit");
-   $limitedResults->bindValue(":q", "%$q%");
-   $limitedResults->bindValue(":start", $start, PDO::PARAM_INT);
-   $limitedResults->bindValue(":limit", 10, PDO::PARAM_INT);
-   $limitedResults->execute();
-   while($r=$limitedResults->fetch()){
+   $limitedResults=array_slice($trs, $start, 10);
+   foreach($limitedResults as $r){
     $res["results"][]=array($r['title'], $r['url'], $r['description']);
    }
    return $res;
