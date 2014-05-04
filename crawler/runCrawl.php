@@ -2,7 +2,7 @@
 $dir=realpath(dirname(__FILE__));
 $s="$dir/crawlStatus.txt";
 $c=file_get_contents($s);
-if($c ==0){
+if($c==0){
  function execInbg($cmd) { 
     if (substr(php_uname(), 0, 7) == "Windows"){ 
         pclose(popen("start /B ". $cmd, "r"));  
