@@ -1,4 +1,4 @@
-<?
+<?php
 $dir=realpath(dirname(__FILE__));
 $s="$dir/crawlStatus.txt";
 $c=file_get_contents($s);

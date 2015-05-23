@@ -1,4 +1,4 @@
-<?include("inc/functions.php");?>
+<?php include("inc/functions.php");?>
 <html>
  <head>
   <?head($GLOBALS['displayQ'], array("search"));?>
@@ -7,7 +7,7 @@
   <?headerElem();?>
   <div class="container">
    <script>document.getElementById('query').focus();</script>
-   <?
+   <?php
    if($GLOBALS['q']==""){
     echo "A query please...";
    }else{
@@ -28,11 +28,11 @@
     }else{
    ?>
     <div class="info">
-     <strong><?echo $res['count'];?></strong>
-     <?echo $res['count']==1 ? "result" : "results";?> found in <?echo $res['time'];?> seconds. Page <?echo $GLOBALS['p'];?>
+     <strong><?php echo $res['count'];?></strong>
+     <?php echo $res['count']==1 ? "result" : "results";?> found in <?php echo $res['time'];?> seconds. Page <?php echo $GLOBALS['p'];?>
     </div>
     <div class="results">
-     <?
+     <?php
      foreach($res['results'] as $re){
       $t=htmlFilt($re[0]);
       $u=htmlFilt($re[1]);
@@ -43,17 +43,17 @@
      ?>
       <div class="result">
        <h3 class="title">
-        <a target="_blank" onmousedown="this.href='<?echo HOST;?>/url.php?u='+encodeURIComponent(this.getAttribute('data-href'));" data-href="<?echo $u;?>" href="<?echo $u;?>"><?echo strlen($t)>59 ? substr($t, 0, 59)."..":$t;?></a>
+        <a target="_blank" onmousedown="this.href='<?php echo HOST;?>/url.php?u='+encodeURIComponent(this.getAttribute('data-href'));" data-href="<?php echo $u;?>" href="<?php echo $u;?>"><?php echo strlen($t)>59 ? substr($t, 0, 59)."..":$t;?></a>
        </h3>
-       <p class="url" title="<?echo $u;?>"><?echo $u;?></p>
-       <p class="description"><?echo $d;?></p>
+       <p class="url" title="<?php echo $u;?>"><?php echo $u;?></p>
+       <p class="description"><?php echo $d;?></p>
       </div>
-     <?
+     <?php
      }
      ?>
     </div>
     <div class="pages">
-     <?
+     <?php
      $count=(ceil($res['count']/10));
      $start=1;
      if($GLOBALS['p'] > 5 && $count > ($GLOBALS['p'] + 4)){
@@ -80,7 +80,7 @@
      }
      ?>
     </div>
-   <?  
+   <?php  
     }
    }
    ?>

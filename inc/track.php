@@ -1,4 +1,4 @@
-<?
+<?php
 if(HOST=="http://search.subinsb.com"){
 ?>
  <script type="text/javascript">
@@ -13,6 +13,6 @@ if(HOST=="http://search.subinsb.com"){
    <img class="statcounter" src="http://c.statcounter.com/9729182/0/f7e9a3d1/1/" alt="hits counter" />
   </div>
  </noscript>
-<?
+<?php
 }
 ?>

@@ -1,4 +1,4 @@
-<?
+<?php
 /* Configuration */
 ini_set("display_errors", "on"); // Do you want to see the errors ?
 

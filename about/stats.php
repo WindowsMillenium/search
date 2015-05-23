@@ -1,4 +1,4 @@
-<?include("../inc/functions.php");?>
+<?php include("../inc/functions.php");?>
 <html>
  <head>
   <?head("Stats");?>
@@ -10,14 +10,14 @@
    <p>See information about the crawled URLs by DingoBot.</p>
    <h3>Total URLs Crawled</h3>
    <strong>
-   <?
+   <?php
    $sql=$dbh->query("SELECT COUNT(id) FROM `search`");
    echo $sql->fetchColumn();
    ?>
    </strong>
    <h3>Last Crawled URLs</h3>
    <ul style="width: 400px;overflow: auto;">
-   <?
+   <?php
    $sql=$dbh->query("SELECT `url` FROM `search` ORDER BY id DESC LIMIT 5");
    while($r=$sql->fetch()){
     echo "<li style='margin-bottom:5px;'>".$r['url']."</li>";

@@ -1,4 +1,4 @@
-<?
+<?php
 class SpellCheck{
  private $url="http://translate.google.com/translate_a/t";
  function __construct(){

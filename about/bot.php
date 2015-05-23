@@ -1,4 +1,4 @@
-<?include("../inc/functions.php");?>
+<?php include("../inc/functions.php");?>
 <html>
  <head>
   <?head("Dingo, The Web Search Bot");?>

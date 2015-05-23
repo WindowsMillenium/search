@@ -1,4 +1,4 @@
-<?
+<?php
 if(!isset($crawlToken) || $crawlToken!=418941){
  if(!isset($_GET['78wc58v'])){
   die("Error");
